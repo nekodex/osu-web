@@ -125,3 +125,7 @@ declare module 'report-user' {
 
   class ReportUser extends React.PureComponent<Props> {}
 }
+
+declare module 'react/beatmap-discussions/post' {
+  class Post extends React.PureComponent<any> {}
+}

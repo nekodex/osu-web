@@ -69,6 +69,7 @@ const vendor = [
   path.join(node_root, `react/umd/react.${reactMin}.js`),
   path.join(node_root, 'react-dom-factories/index.js'),
   path.join(node_root, `react-dom/umd/react-dom.${reactMin}.js`),
+  // path.join(node_root, `draft-js/dist/Draft${min}.js`),
   path.join(node_root, `prop-types/prop-types${min}.js`),
   path.join(node_root, 'photoswipe/dist/photoswipe.js'),
   path.join(node_root, 'photoswipe/dist/photoswipe-ui-default.js'),

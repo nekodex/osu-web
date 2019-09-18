@@ -24,6 +24,8 @@ import { NewDiscussion } from './new-discussion'
 import { BackToTop } from 'back-to-top'
 import * as React from 'react'
 import { a, div, h1, p } from 'react-dom-factories'
+import NewerDiscussion from './newer-discussion'
+
 el = React.createElement
 
 export class Main extends React.PureComponent
@@ -130,17 +132,20 @@ export class Main extends React.PureComponent
       else
         div
           className: 'osu-layout__section osu-layout__section--extra'
-          el NewDiscussion,
+          el NewerDiscussion,
             beatmapset: @state.beatmapset
-            currentUser: @state.currentUser
-            currentBeatmap: @currentBeatmap()
-            currentDiscussions: @currentDiscussions()
-            innerRef: @newDiscussionRef
-            mode: @state.currentMode
-            pinned: @state.pinnedNewDiscussion
-            setPinned: @setPinnedNewDiscussion
-            stickTo: @modeSwitcherRef
-            autoFocus: @focusNewDiscussion
+            users: @users()
+#          el NewDiscussion,
+#            beatmapset: @state.beatmapset
+#            currentUser: @state.currentUser
+#            currentBeatmap: @currentBeatmap()
+#            currentDiscussions: @currentDiscussions()
+#            innerRef: @newDiscussionRef
+#            mode: @state.currentMode
+#            pinned: @state.pinnedNewDiscussion
+#            setPinned: @setPinnedNewDiscussion
+#            stickTo: @modeSwitcherRef
+#            autoFocus: @focusNewDiscussion
 
           el Discussions,
             beatmapset: @state.beatmapset
