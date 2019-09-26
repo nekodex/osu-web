@@ -32,7 +32,7 @@ export const BeatmapIcon: FunctionComponent<Props> = ({beatmap, overrideVersion,
   const showTooltip = showTitle || !overrideVersion;
   const mode = beatmap.convert ? 'osu' : beatmap.mode;
 
-  let className = `beatmap-icon beatmap-icon--#{difficultyRating} beatmap-icon--${modifier}`;
+  let className = `beatmap-icon beatmap-icon--${difficultyRating} beatmap-icon--${modifier}`;
   if (showTooltip) {
     className += ' beatmap-icon--with-hover js-beatmap-tooltip';
   }
@@ -46,7 +46,6 @@ export const BeatmapIcon: FunctionComponent<Props> = ({beatmap, overrideVersion,
     >
       <div className='beatmap-icon__shadow' />
       <i className={`fal fa-extra-mode-${mode}`} />
-      zx
     </div>
   );
 };
