@@ -8003,6 +8003,11 @@ slate-hotkeys@^0.2.9:
     is-hotkey "0.1.4"
     slate-dev-environment "^0.2.2"
 
+slate-instant-replace@^0.1.11:
+  version "0.1.11"
+  resolved "https://registry.yarnpkg.com/slate-instant-replace/-/slate-instant-replace-0.1.11.tgz#e2888d402fbe8c1e17e6ad9de592c5df4fac3a4c"
+  integrity sha512-DMFaMBrvPMvLsmfjL7jByeEw2FM6ZR4DwP2a3pSRwJhwswFcT7LarCeC94qOxT41Ik/Qu6K+IwMCjAnF+UHlFg==
+
 slate-plain-serializer@^0.7.10:
   version "0.7.10"
   resolved "https://registry.yarnpkg.com/slate-plain-serializer/-/slate-plain-serializer-0.7.10.tgz#bc4a6942cf52fde826019bb1095dffd0dac8cc08"
@@ -8039,6 +8044,11 @@ slate-react@^0.22.8:
     slate-react-placeholder "^0.2.8"
     tiny-invariant "^1.0.1"
     tiny-warning "^0.0.3"
+
+slate-soft-break@^0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/slate-soft-break/-/slate-soft-break-0.9.0.tgz#7fb2a22eb8600717ee299f7866469cb9c705a53d"
+  integrity sha512-iTy2bl/G+tphN10YQBOPDRxDqgM46ZH1UUz0ublmL6PLtwJ3jJK1n08w37YxnY/ge4aW31UN386KV6qvFx6Hsw==
 
 slate@^0.47.8:
   version "0.47.8"
