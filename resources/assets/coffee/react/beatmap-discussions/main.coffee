@@ -23,7 +23,7 @@ import { ModeSwitcher } from './mode-switcher'
 import { BackToTop } from 'back-to-top'
 import * as React from 'react'
 import { div } from 'react-dom-factories'
-import NewerDiscussion from './newer-discussion'
+import Editor from './editor'
 
 el = React.createElement
 
@@ -131,7 +131,7 @@ export class Main extends React.PureComponent
       else
         div
           className: 'osu-layout__section osu-layout__section--extra'
-          el NewerDiscussion,
+          el Editor,
             beatmapset: @state.beatmapset
             users: @users()
             beatmaps: @beatmaps()
