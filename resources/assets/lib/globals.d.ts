@@ -23,6 +23,7 @@ declare var userVerification: any;
 
 // external (to typescript) classes
 declare var BeatmapsetFilter: any;
+declare var BeatmapHelper: BeatmapHelperInterface;
 declare var BeatmapDiscussionHelper: BeatmapDiscussionHelperClass;
 declare var LoadingOverlay: any;
 declare var Timeout: any;
@@ -67,6 +68,10 @@ interface OsuCommon {
   updateQueryString(url: string | null, params: { [key: string]: string | undefined }): string;
 }
 
+interface BeatmapHelperInterface {
+  getDiffRating(rating: number): string;
+}
+
 interface Country {
   code?: string;
   name?: string;
@@ -84,6 +89,39 @@ interface Score {
   replay: boolean;
   user: User;
   user_id: number;
+}
+
+interface BeatmapFailTimesArray {
+  exit: number[];
+  fail: number[];
+}
+
+interface Beatmap {
+  accuracy: number;
+  ar: number;
+  beatmapset_id: number;
+  convert: boolean | null;
+  count_circles: number;
+  count_sliders: number;
+  count_spinners: number;
+  count_total: number;
+  cs: number;
+  deleted_at: string | null;
+  difficulty_rating: number;
+  drain: number;
+  failtimes?: BeatmapFailTimesArray;
+  hit_length: number;
+  id: number;
+  last_updated: string;
+  mode: string;
+  mode_int: number;
+  passcount: number;
+  playcount: number;
+  ranked: number;
+  status: string;
+  total_length: number;
+  url: string;
+  version: string;
 }
 
 // TODO: should look at combining with the other User.ts at some point.
@@ -122,4 +160,12 @@ interface TurbolinksStatic {
   setProgressBarDelay(delayInMilliseconds: number): void;
   uuid(): string;
   visit(location: string, options?: TurbolinksAction): void;
+}
+
+declare module 'slate-instant-replace' {
+  export default function InstantReplace(arguments: object): object;
+}
+
+declare module 'slate-soft-break' {
+  export default function SoftBreak(arguments: object): object;
 }
