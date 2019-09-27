@@ -97,6 +97,7 @@ interface BeatmapFailTimesArray {
   fail: number[];
 }
 
+// TODO: this is incomplete
 interface Beatmap {
   accuracy: number;
   ar: number;
