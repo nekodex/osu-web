@@ -134,7 +134,7 @@ export class Main extends React.PureComponent
           el Editor,
             beatmapset: @state.beatmapset
             users: @users()
-            beatmaps: @beatmaps()
+            beatmaps: @groupedBeatmaps()
             currentBeatmap: @currentBeatmap()
             currentDiscussions: @currentDiscussions()
 
