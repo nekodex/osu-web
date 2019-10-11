@@ -65,6 +65,7 @@ Route::group(['prefix' => 'beatmapsets'], function () {
     Route::resource('beatmap-discussions', 'BeatmapDiscussionsController', ['only' => ['destroy', 'index', 'show']]);
 
     Route::post('beatmap-discussions-posts/{beatmap_discussion_post}/restore', 'BeatmapDiscussionPostsController@restore')->name('beatmap-discussion-posts.restore');
+    Route::post('beatmap-discussion-posts/derp', 'BeatmapDiscussionPostsController@derp')->name('beatmap-discussion-posts.derp');
     Route::resource('beatmap-discussion-posts', 'BeatmapDiscussionPostsController', ['only' => ['destroy', 'index', 'store', 'update']]);
 });
 

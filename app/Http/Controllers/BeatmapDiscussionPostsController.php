@@ -100,6 +100,72 @@ class BeatmapDiscussionPostsController extends Controller
         return $post->beatmapset->defaultDiscussionJson();
     }
 
+    public function derp()
+    {
+        $jsonObj = json_decode(request()->input('document'));
+        $output = [];
+
+        foreach ($jsonObj->document->nodes as $node)
+        {
+            switch($node->type) {
+                case 'paragraph':
+                    // For paragraphs, we convert the formatting to Markdown
+                    $temp = [];
+                    foreach ($node->nodes as $child) {
+                        $marks = [];
+                        if (isset($child->marks)) {
+                            foreach ($child->marks as $mark) {
+                                switch ($mark->type) {
+                                    case 'bold':
+                                        $marks[] = '**';
+                                        break;
+                                    case 'italic':
+                                        $marks[] = '*';
+                                        break;
+                                }
+                            }
+                        }
+
+                        $matches = [];
+                        // Markdown expects no whitespace between marks and word boundaries, so we find and move the whitespace to outside the marks.
+                        $hasWhitespace = preg_match('/^(?:(?<leading>\s+)?(?<body>\S.*\S|\S))(?<trailing>\s+)?$/', $child->text, $matches);
+
+//                        $output[] = "--{$child->text}\n\n--\n" . json_encode($matches, JSON_PRETTY_PRINT) . "\n--\n\n";
+
+                        // Should always match with the named 'body' group at least (unless text is just a single space).
+                        if ($hasWhitespace) {
+                            $temp[] = join('', [$matches['leading'] ?? '', join('', $marks), $matches['body'], join('', array_reverse($marks)), $matches['trailing'] ?? '']);
+                        } else {
+                            $temp[] = $child->text;
+                        }
+                    }
+                    $output[] = join('', $temp);
+                    $output[] = "\n";
+                    break;
+
+                case 'embed':
+                    // TODO: This.
+                    $output[] = "%[";
+                    foreach ($node->nodes as $child) {
+                        switch ($child->object) {
+                            case 'text':
+                                $output[] = $child->text;
+                                break;
+
+                            case 'inline':
+                                if ($child->type === 'timestamp')
+                                    $output[] = $child->data->lastWord;
+                                break;
+                        }
+                    }
+                    $output[] = "](#{$node->data->beatmapId}/{$node->data->type}/11:22:33)\n";
+                    break;
+            }
+        }
+
+        return join('', $output);
+    }
+
     public function store()
     {
         $discussion = $this->prepareDiscussion(request());
