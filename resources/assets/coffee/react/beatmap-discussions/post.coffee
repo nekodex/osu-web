@@ -22,6 +22,7 @@ import * as React from 'react'
 import { a, button, div, i, span } from 'react-dom-factories'
 import { ReportReportable } from 'report-reportable'
 import { UserAvatar } from 'user-avatar'
+import * as ReactMarkdown from 'react-markdown'
 
 el = React.createElement
 
@@ -188,11 +189,18 @@ export class Post extends React.PureComponent
         ['beatmap-discussions', 'beatmap_discussion', @props.discussion]
 
     div className: "#{bn}__message-container #{'hidden' if @state.editing}",
-      div
-        className: "#{bn}__message"
-        ref: (el) => @messageBody = el
-        dangerouslySetInnerHTML:
-          __html: BeatmapDiscussionHelper.format @props.post.message
+      if @props.discussion.message_type == 'review'
+        div
+          className: "#{bn}__message"
+          ref: (el) => @messageBody = el
+          el ReactMarkdown,
+            source: @props.post.message
+      else
+        div
+          className: "#{bn}__message"
+          ref: (el) => @messageBody = el
+          dangerouslySetInnerHTML:
+            __html: BeatmapDiscussionHelper.format @props.post.message
 
       div className: "#{bn}__info-container",
         span

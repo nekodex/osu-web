@@ -42,6 +42,7 @@
     "react-autosize-textarea": "7.0.0",
     "react-dom": "^16.8.4",
     "react-dom-factories": "^1.0.0",
+    "react-markdown": "^4.2.2",
     "react-virtual-list": "^2.3.0",
     "require-dir": "^1.2.0",
     "shopify-buy": "^2.6.1",
