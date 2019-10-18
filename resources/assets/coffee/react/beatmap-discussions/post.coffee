@@ -22,7 +22,7 @@ import * as React from 'react'
 import { a, button, div, i, span } from 'react-dom-factories'
 import { ReportReportable } from 'report-reportable'
 import { UserAvatar } from 'user-avatar'
-import * as ReactMarkdown from 'react-markdown'
+import { DiscussionPreview } from 'beatmap-discussions/discussion-preview'
 
 el = React.createElement
 
@@ -193,8 +193,9 @@ export class Post extends React.PureComponent
         div
           className: "#{bn}__message"
           ref: (el) => @messageBody = el
-          el ReactMarkdown,
-            source: @props.post.message
+          el DiscussionPreview,
+            discussions: @context.discussions
+            message: @props.post.message
       else
         div
           className: "#{bn}__message"
