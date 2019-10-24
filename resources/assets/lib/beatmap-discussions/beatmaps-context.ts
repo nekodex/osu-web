@@ -1,3 +1,3 @@
 import * as React from 'react';
 
-export const BeatmapsContext = React.createContext({});
+export const BeatmapsContext = React.createContext([]);

@@ -9,17 +9,15 @@ function plugin (options) {
   }
 
   function inlineTokenizer (eat, value, silent) {
-    // console.log('inlineTokenizer');
-    const regex = new RegExp(/[%]\[[^\]]*]\(#(\d+)\)\n*/)
+    const regex = new RegExp(/%\[[^\]]*]\(#(\d+)\)\n*/)
     const keep = regex.exec(value)
 
-    /* istanbul ignore if - never used (yet) */
     if (silent) return silent
     if (!keep || keep.index !== 0) return
 
     const [matched, embed, reference] = keep
 
-    derp = eat(matched)({
+    return eat(matched)({
       type: 'embed',
       embed: embed,
       reference: reference,
@@ -33,10 +31,6 @@ function plugin (options) {
         },
       },
     });
-
-    console.log(derp);
-
-    return derp;
   }
 
   function transformer (tree) {

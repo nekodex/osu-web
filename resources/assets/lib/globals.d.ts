@@ -125,6 +125,20 @@ interface Beatmap {
   version: string;
 }
 
+// TODO: this is incomplete
+interface BeatmapDiscussion {
+  beatmap_id: number | null;
+  beatmapset_id: number;
+  message_type: string;
+  posts: BeatmapDiscussionPost[];
+  timestamp: number | null;
+}
+
+// TODO: this is incomplete
+interface BeatmapDiscussionPost {
+  message: string;
+}
+
 // TODO: should look at combining with the other User.ts at some point.
 interface User {
   avatar_url?: string;

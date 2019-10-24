@@ -23,22 +23,17 @@ import { BeatmapIcon } from '../beatmap-icon';
 import { BeatmapsContext } from './beatmaps-context';
 import { DiscussionsContext } from './discussions-context';
 
-// interface Props {
-//   // beatmap: any; // TODO: fix
-//   // modifier?: string;
-//   // overrideVersion?: boolean;
-//   // showTitle?: boolean;
-// }
+interface EmbedProps {
+  embed: number;
+}
 
-// export const DiscussionPreview: FunctionComponent<any> = (props) => {
 export class DiscussionPreview extends React.Component<any> {
-  embed = (props) => {
+  embed = (props: EmbedProps) => {
     const discussions = useContext(DiscussionsContext);
     const beatmaps = useContext(BeatmapsContext);
 
-    const discussion = discussions[props.embed];
-    // console.log('disc', discussion);
-    const icons = {
+    const discussion: BeatmapDiscussion = discussions[props.embed];
+    const icons: {[type: string]: string} = {
       hype: 'fas fa-bullhorn',
       mapperNote: 'far fa-sticky-note',
       praise: 'fas fa-heart',
@@ -81,7 +76,6 @@ export class DiscussionPreview extends React.Component<any> {
   }
 
   render() {
-    // console.log('dp', this.props);
     return (
       <ReactMarkdown
         // #            allowedTypes: [
@@ -89,7 +83,7 @@ export class DiscussionPreview extends React.Component<any> {
         // #              'text',
         // #              'emphasis',
         // #              'strong',
-        // ##              'break',
+        // #              'break',
         // #              'paragraph'
         // #            ]
         plugins={[
@@ -104,4 +98,3 @@ export class DiscussionPreview extends React.Component<any> {
     );
   }
 }
-// DiscussionPreview.contextType = DiscussionsContext;

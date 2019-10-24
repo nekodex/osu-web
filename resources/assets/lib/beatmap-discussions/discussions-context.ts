@@ -1,3 +1,3 @@
 import * as React from 'react';
 
-export const DiscussionsContext = React.createContext({});
+export const DiscussionsContext = React.createContext([]);
