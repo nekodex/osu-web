@@ -24,7 +24,9 @@ import { BeatmapsContext } from './beatmaps-context';
 import { DiscussionsContext } from './discussions-context';
 
 interface EmbedProps {
-  embed: number;
+  data: {
+    discussion_id: number;
+  };
 }
 
 export class DiscussionPreview extends React.Component<any> {
@@ -32,7 +34,7 @@ export class DiscussionPreview extends React.Component<any> {
     const discussions = useContext(DiscussionsContext);
     const beatmaps = useContext(BeatmapsContext);
 
-    const discussion: BeatmapDiscussion = discussions[props.embed];
+    const discussion: BeatmapDiscussion = discussions[props.data.discussion_id];
     const icons: {[type: string]: string} = {
       hype: 'fas fa-bullhorn',
       mapperNote: 'far fa-sticky-note',
