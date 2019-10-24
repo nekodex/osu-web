@@ -49,9 +49,11 @@ export class DiscussionPreview extends React.Component<any> {
             <div className='beatmap-discussion-post beatmap-discussion-post--reply'>
                 <div className='beatmap-discussion-post__content'>
                     <div className='beatmap-discussion-newer__dropdown'>
+                      {discussion.beatmap_id &&
                         <BeatmapIcon
                           beatmap={beatmaps[discussion.beatmap_id]}
                         />
+                      }
                     </div>
                     <div className='beatmap-discussion-post__user-container'>
                       <div className='beatmap-discussion-timestamp__icons-container' style={{marginRight: '10px'}}>
