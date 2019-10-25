@@ -15,29 +15,41 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-import { Editor as SlateEditor } from 'slate';
+import { Editor as SlateEditor, Node } from 'slate';
 
 const EditorPluginTimestamp = () => ({
+  normalizeNode: (node: Node, editor: SlateEditor, next: () => void) => {
+    // if (node.type) {
+    //   switch (node.type) {
+    //     case 'timestamp':
+    //       console.log('normalize', node);
+    //       break;
+    //   }
+    // }
+    return next();
+  },
+
   onKeyDown: (event: KeyboardEvent, editor: SlateEditor, next: () => any) => {
     const TS_REGEX = /\b((\d{2,}):([0-5]\d)[:.](\d{3})( \((?:\d[,|])*\d\))?)/;
-    console.log(editor, event.key);
+    console.log(editor, event.key, editor.value);
 
+    let current = editor.value.focusBlock.text;
+
+    // handle breaking timestamps when backspacing into them
     if (event.key === 'Backspace') {
-      // handle breaking timestamps when deleting into them
-      console.log('backspace', editor);
       editor.moveFocusBackward(1);
-      editor.unwrapInline('timestamp'); // remove existing timestamps
-      editor.moveFocusForward(1);
-
-      return next();
+      editor.unwrapInline('timestamp');
+      current = current.slice(0, current.length - 1);
+      // editor.moveFocusForward(1);
+      // return next();
     }
-
-    let current = editor.value.startText.text;
 
     // isPrintableChar
     if (event.key.length === 1) {
       current += event.key;
     }
+
+    console.log('focusBlock.text', current, editor.value.focusBlock.text);
 
     const matches = current.match(TS_REGEX);
     if (matches && matches.index !== undefined) {
@@ -46,20 +58,27 @@ const EditorPluginTimestamp = () => ({
         return next();
       }
 
-      event.preventDefault();
-
       if (event.key.length === 1) {
+        event.preventDefault();
         editor.insertText(event.key);
       }
 
-      editor.moveFocusTo(matches.index);
+      const cursorPos = editor.value.selection.anchor;
+      // debugger
+      console.log('offset', cursorPos);
+      // editor.anchor
+
+      editor.moveAnchorTo(matches.index);
+      editor.moveFocusTo(matches.index + matches[0].length);
       editor.unwrapInline('timestamp'); // remove existing timestamps
       editor.wrapInline({type: 'timestamp', data: {lastWord: current}}); // set timestamp inline
-      editor.moveFocusForward(matches[0].length + 1); // deselect it
+      // editor.moveTo(cursorPos.path);
+      editor.moveTo(cursorPos.offset + 1); // deselect it
     }
 
     return next();
-  },
+    // event.preventDefault();
+  }
 });
 
 export default EditorPluginTimestamp;

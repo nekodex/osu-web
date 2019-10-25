@@ -127,7 +127,7 @@ export default class EditorBeatmapSelector extends React.Component<any, any> {
   }
 
   syncBlackout = () => {
-    Blackout.toggle(this.state.visible, 0.5);
+    // Blackout.toggle(this.state.visible, 0.5);
   }
 
   toggleMenu = (event: Event) => {

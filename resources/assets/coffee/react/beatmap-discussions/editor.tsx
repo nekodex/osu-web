@@ -71,6 +71,7 @@ const schema: SchemaProperties = {
       nodes: [{
         match: { object: 'text' },
       }],
+      // text: /\b((\d{2,}):([0-5]\d)[:.](\d{3})( \((?:\d[,|])*\d\))?)/,
     },
   },
 };
