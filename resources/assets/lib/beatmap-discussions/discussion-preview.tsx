@@ -91,7 +91,7 @@ export class DiscussionPreview extends React.Component<any> {
         // #              'paragraph'
         // #            ]
         plugins={[
-          require('./temp'),
+          require('./markdown-embed-tokenizer'),
         ]}
         source={this.props.message}
         renderers={{
