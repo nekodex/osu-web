@@ -24,7 +24,7 @@ import EditorBeatmapSelector from './editor-beatmap-selector';
 import EditorIssueTypeSelector from './editor-issue-type-selector';
 import { SlateContext } from './slate-context';
 
-interface Props extends RenderElementProps {
+interface Props {
   beatmaps: Beatmap[];
   beatmapset: Beatmapset;
   currentBeatmap: Beatmap;
@@ -38,44 +38,45 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
 
   componentDidMount = () => {
     // reset timestamp to null on clone
-    Transforms.setNodes(this.context, {timestamp: null}, {at: this.path()});
+    // Transforms.setNodes(this.context, {timestamp: null}, {at: this.path()});
   }
 
   componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<{}>, snapshot?: any): void {
-    const path = this.path();
+    // const path = this.path();
 
-    if (this.props.element.beatmapId !== 'all') {
-      const content = this.props.element.children[0].text;
-      const TS_REGEX = /((\d{2,}):([0-5]\d)[:.](\d{3}))( \((?:\d[,|])*\d\))?/;
-      const matches = content.match(TS_REGEX);
-      let timestamp = null;
-
-      if (matches !== null) {
-        timestamp = matches[1];
-      }
-
-      Transforms.setNodes(this.context, {timestamp}, {at: path});
-    } else {
-      Transforms.setNodes(this.context, {timestamp: null}, {at: path});
-    }
+    // if (this.props.blockProps.beatmapId !== 'all') {
+    //   const content = this.props.blockProps.children[0].text;
+    //   const TS_REGEX = /((\d{2,}):([0-5]\d)[:.](\d{3}))( \((?:\d[,|])*\d\))?/;
+    //   const matches = content.match(TS_REGEX);
+    //   let timestamp = null;
+    //
+    //   if (matches !== null) {
+    //     timestamp = matches[1];
+    //   }
+    //
+    //   // Transforms.setNodes(this.context, {timestamp}, {at: path});
+    // } else {
+    //   // Transforms.setNodes(this.context, {timestamp: null}, {at: path});
+    // }
   }
 
-  path = (): Path => ReactEditor.findPath(this.context, this.props.element);
+  // path = (): Path => ReactEditor.findPath(this.context, this.props.blockProps);
 
   remove = () => {
-    Transforms.delete(this.context, { at: this.path() });
+    // Transforms.delete(this.context, { at: this.path() });
     // if editmode, do callback to server to nuke?
   }
 
   readOnly = () => {
-    return this.props.editMode && this.props.element.discussionId;
+    return this.props.blockProps.editMode && this.props.blockProps.discussionId;
   }
 
   render(): React.ReactNode {
     const bn = 'beatmap-discussion-review-post-embed-preview';
-    const timestamp = this.props.element.timestamp || osu.trans('beatmap_discussions.timestamp_display.general');
-    const attribs = this.props.attributes;
+    const timestamp = this.props.blockProps.timestamp || osu.trans('beatmap_discussions.timestamp_display.general');
+    // const attribs = this.props.blockProps.attributes;
     const extraClasses = [];
+    // console.log('EditorDiscussionComponent', this.props.blockProps)
 
     if (this.readOnly()) {
       attribs.contentEditable = false;
@@ -83,7 +84,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
     }
 
     return (
-      <div className='beatmap-discussion beatmap-discussion--preview' {...attribs}>
+      <div className='beatmap-discussion beatmap-discussion--preview'>
         <div className='beatmap-discussion__discussion'>
           <div className={osu.classWithModifiers(bn, extraClasses)}>
             <div
@@ -93,8 +94,8 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
                 className={`${bn}__selectors`}
                 contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
               >
-                <EditorBeatmapSelector {...this.props} readOnly={this.readOnly()}/>
-                <EditorIssueTypeSelector {...this.props} readOnly={this.readOnly()}/>
+                <EditorBeatmapSelector {...this.props.blockProps} readOnly={this.readOnly()}/>
+                <EditorIssueTypeSelector {...this.props.blockProps} readOnly={this.readOnly()}/>
                 <div
                   className={`${bn}__timestamp`}
                   contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
@@ -109,9 +110,9 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
               <div
                 className={`${bn}__message-container`}
               >
-                <div className='beatmapset-discussion-message'>{this.props.children}</div>
+                <div className='beatmapset-discussion-message'> </div>
               </div>
-              {this.props.editMode && !this.readOnly() &&
+              {this.props.blockProps.editMode && !this.readOnly() &&
                 <div
                   className={`${bn}__unsaved-indicator`}
                   contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
@@ -123,7 +124,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
             </div>
           </div>
         </div>
-        {!this.props.editMode || !this.readOnly() &&
+        {!this.props.blockProps.editMode || !this.readOnly() &&
           <button
             className={`${bn}__trashcan`}
             onClick={this.remove}
@@ -133,7 +134,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
             <i className='fas fa-trash-alt'/>
           </button>
         }
-        {this.props.editMode && this.readOnly() &&
+        {this.props.blockProps.editMode && this.readOnly() &&
           <button
             className={`${bn}__trashcan`}
             onClick={this.remove}
@@ -148,6 +149,6 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
   }
 
   unlink = () => {
-    Transforms.delete(this.context, { at: this.path() });
+    // Transforms.delete(this.context, { at: this.path() });
   }
 }

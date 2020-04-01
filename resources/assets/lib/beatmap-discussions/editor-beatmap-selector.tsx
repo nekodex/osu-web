@@ -68,7 +68,7 @@ export default class EditorBeatmapSelector extends React.Component<any, any> {
   }
 
   renderButton = (children: JSX.Element[], ref: React.RefObject<HTMLDivElement>, toggle: (event: React.MouseEvent<HTMLElement>) => void) => {
-    const selected: MenuItem = _.find(this.menuOptions, (option) => option.id === this.props.element.beatmapId) || this.menuOptions[0];
+    const selected: MenuItem = _.find(this.menuOptions, (option) => option.id === this.props.beatmapId) || this.menuOptions[0];
     if (this.props.readOnly) {
       toggle = () => { /* do nothing */ };
     }
@@ -88,7 +88,7 @@ export default class EditorBeatmapSelector extends React.Component<any, any> {
 
   renderItem = (menuItem: MenuItem) => {
     let menuItemClasses = 'simple-menu__item';
-    if (this.props.element.beatmapId === menuItem.id) {
+    if (this.props.beatmapId === menuItem.id) {
       menuItemClasses += ' simple-menu__item--active';
     }
 

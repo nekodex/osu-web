@@ -43,7 +43,7 @@ export default class EditorIssueTypeSelector extends React.Component<any, any> {
   }
 
   renderButton = (children: JSX.Element[], ref: React.RefObject<HTMLDivElement>, toggle: (event: React.MouseEvent<HTMLElement>) => void) => {
-    const type: DiscussionType = this.props.element.discussionType;
+    const type: DiscussionType = this.props.discussionType;
     const icons = {
       hype: 'fas fa-bullhorn',
       mapperNote: 'far fa-sticky-note',
