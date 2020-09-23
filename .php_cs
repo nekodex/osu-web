@@ -82,7 +82,7 @@ $rules = [
     'no_whitespace_before_comma_in_array' => true,
     'no_whitespace_in_blank_line' => true,
     'normalize_index_brace' => true,
-    'not_operator_with_successor_space' => true,
+    'not_operator_with_successor_space' => false,
     'object_operator_without_whitespace' => true,
     'ordered_imports' => ['sortAlgorithm' => 'alpha'],
     'phpdoc_indent' => true,
@@ -92,7 +92,7 @@ $rules = [
     'phpdoc_no_useless_inheritdoc' => true,
     'phpdoc_scalar' => true,
     'phpdoc_single_line_var_spacing' => true,
-    'phpdoc_summary' => true,
+    'phpdoc_summary' => false,
     'phpdoc_to_comment' => true,
     'phpdoc_trim' => true,
     'phpdoc_types' => true,
@@ -134,6 +134,7 @@ $finder = Finder::create()
         $project_path . '/routes',
         $project_path . '/tests',
     ])
+    ->exclude('lang')
     ->name('*.php')
     ->notName('*.blade.php')
     ->ignoreDotFiles(true)
