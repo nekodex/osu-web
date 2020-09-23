@@ -72,7 +72,8 @@ class UpdateStream extends Model
 
     public function latestBuild()
     {
-        return $this->builds()->orderBy('build_id', 'DESC')->first();
+        return $this->builds()->orderBy("build_id", "DESC")->first();
+        return false;;
     }
 
     public function userCount()
