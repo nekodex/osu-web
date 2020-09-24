@@ -47,7 +47,8 @@ class BlocksController extends Controller
             ->where('zebra_id', $targetId)
             ->first();
 
-        if ($existingRelation) {
+        if ($existingRelation)
+        {
             $existingRelation->update([
                 'foe' => true,
                 'friend' => false,
