@@ -55,6 +55,8 @@
     "laravel/dusk": "*",
     "mockery/mockery": "*",
     "phpunit/phpunit": "*",
+    "slevomat/coding-standard": "^6.4",
+    "squizlabs/php_codesniffer": "^3.5",
     "symfony/css-selector": "*",
     "symfony/dom-crawler": "*"
   },
