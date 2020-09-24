@@ -8,7 +8,9 @@ jobs:
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v2
-        - name: Install dependencies
-          run: composer install --dev --prefer-dist --no-progress --no-suggest squizlabs/php_codesniffer slevomat/coding-standard
+        - name: Install Composer dependencies
+          run: composer config -g github-oauth.github.com 98cbc568911ef1e060a3a31623f2c80c1786d5ff && composer install --dev --prefer-dist --no-progress --no-suggest
+          env:
+            APP_ENV: testing
         - name: PHPCS check
           uses: chekalsky/phpcs-action@v1
