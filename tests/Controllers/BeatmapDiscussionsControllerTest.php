@@ -245,8 +245,8 @@ class BeatmapDiscussionsControllerTest extends TestCase
             )
             ->assertJsonFragment(
                 [
-                  'user_id' => $this->user->getKey(),
-                  'message' => $issueText,
+                    'user_id' => $this->user->getKey(),
+                    'message' => $issueText,
                 ]
             );
 

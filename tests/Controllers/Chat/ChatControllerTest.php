@@ -32,9 +32,9 @@ class ChatControllerTest extends TestCase
             'POST',
             route('api.chat.new'),
             [
-                    'target_id' => $this->anotherUser->user_id,
-                    'message' => self::$faker->sentence(),
-                ]
+                'target_id' => $this->anotherUser->user_id,
+                'message' => self::$faker->sentence(),
+            ]
         )->assertStatus(200);
     }
 
@@ -45,9 +45,9 @@ class ChatControllerTest extends TestCase
             'POST',
             route('api.chat.new'),
             [
-                    'target_id' => $this->anotherUser->user_id,
-                    'message' => self::$faker->sentence(),
-                ]
+                'target_id' => $this->anotherUser->user_id,
+                'message' => self::$faker->sentence(),
+            ]
         )->assertStatus(200);
 
         // should return existing conversation and not error
@@ -56,9 +56,9 @@ class ChatControllerTest extends TestCase
             'POST',
             route('api.chat.new'),
             [
-                    'target_id' => $this->anotherUser->user_id,
-                    'message' => self::$faker->sentence(),
-                ]
+                'target_id' => $this->anotherUser->user_id,
+                'message' => self::$faker->sentence(),
+            ]
         )->assertStatus(200);
     }
 
@@ -81,9 +81,9 @@ class ChatControllerTest extends TestCase
         $this->json(
             'DELETE',
             route('api.chat.channels.part', [
-                    'channel' => $channelId,
-                    'user' => $this->user->user_id,
-                ])
+                'channel' => $channelId,
+                'user' => $this->user->user_id,
+            ])
         )->assertSuccessful();
 
         app('OsuAuthorize')->cacheReset();
@@ -91,9 +91,9 @@ class ChatControllerTest extends TestCase
             'POST',
             route('api.chat.new'),
             [
-                    'target_id' => $this->anotherUser->user_id,
-                    'message' => self::$faker->sentence(),
-                ]
+                'target_id' => $this->anotherUser->user_id,
+                'message' => self::$faker->sentence(),
+            ]
         )->assertSuccessful();
     }
 
@@ -121,9 +121,9 @@ class ChatControllerTest extends TestCase
             'POST',
             route('api.chat.new'),
             [
-                    'target_id' => $this->anotherUser->user_id,
-                    'message' => self::$faker->sentence(),
-                ]
+                'target_id' => $this->anotherUser->user_id,
+                'message' => self::$faker->sentence(),
+            ]
         )->assertStatus(403);
     }
 
@@ -136,9 +136,9 @@ class ChatControllerTest extends TestCase
             'POST',
             route('api.chat.new'),
             [
-                    'target_id' => $this->anotherUser->user_id,
-                    'message' => self::$faker->sentence(),
-                ]
+                'target_id' => $this->anotherUser->user_id,
+                'message' => self::$faker->sentence(),
+            ]
         )->assertStatus(403);
     }
 
@@ -155,9 +155,9 @@ class ChatControllerTest extends TestCase
             'POST',
             route('api.chat.new'),
             [
-                    'target_id' => $this->anotherUser->user_id,
-                    'message' => self::$faker->sentence(),
-                ]
+                'target_id' => $this->anotherUser->user_id,
+                'message' => self::$faker->sentence(),
+            ]
         )->assertStatus(403);
     }
 
@@ -170,9 +170,9 @@ class ChatControllerTest extends TestCase
             'POST',
             route('api.chat.new'),
             [
-                    'target_id' => $restrictedUser->user_id,
-                    'message' => self::$faker->sentence(),
-                ]
+                'target_id' => $restrictedUser->user_id,
+                'message' => self::$faker->sentence(),
+            ]
         )->assertStatus(422);
     }
 
@@ -183,9 +183,9 @@ class ChatControllerTest extends TestCase
             'POST',
             route('api.chat.new'),
             [
-                    'target_id' => $this->user->user_id,
-                    'message' => self::$faker->sentence(),
-                ]
+                'target_id' => $this->user->user_id,
+                'message' => self::$faker->sentence(),
+            ]
         )->assertStatus(422);
     }
 
@@ -198,9 +198,9 @@ class ChatControllerTest extends TestCase
             'POST',
             route('api.chat.new'),
             [
-                    'target_id' => $privateUser->user_id,
-                    'message' => self::$faker->sentence(),
-                ]
+                'target_id' => $privateUser->user_id,
+                'message' => self::$faker->sentence(),
+            ]
         )->assertStatus(403);
     }
 
@@ -217,9 +217,9 @@ class ChatControllerTest extends TestCase
             'POST',
             route('api.chat.new'),
             [
-                    'target_id' => $privateUser->user_id,
-                    'message' => self::$faker->sentence(),
-                ]
+                'target_id' => $privateUser->user_id,
+                'message' => self::$faker->sentence(),
+            ]
         )->assertStatus(200);
     }
 
@@ -258,9 +258,9 @@ class ChatControllerTest extends TestCase
             'POST',
             route('api.chat.new'),
             [
-                    'target_id' => $this->anotherUser->user_id,
-                    'message' => self::$faker->sentence(),
-                ]
+                'target_id' => $this->anotherUser->user_id,
+                'message' => self::$faker->sentence(),
+            ]
         )->assertStatus(200);
 
         // block $this->anotherUser
@@ -299,9 +299,9 @@ class ChatControllerTest extends TestCase
             'POST',
             route('api.chat.new'),
             [
-                    'target_id' => $this->anotherUser->user_id,
-                    'message' => self::$faker->sentence(),
-                ]
+                'target_id' => $this->anotherUser->user_id,
+                'message' => self::$faker->sentence(),
+            ]
         )->assertStatus(200);
 
         // restrict $this->anotherUser
@@ -337,9 +337,9 @@ class ChatControllerTest extends TestCase
             'POST',
             route('api.chat.new'),
             [
-                    'target_id' => $this->anotherUser->user_id,
-                    'message' => self::$faker->sentence(),
-                ]
+                'target_id' => $this->anotherUser->user_id,
+                'message' => self::$faker->sentence(),
+            ]
         )->assertStatus(200);
 
         $presenceData = $response->decodeResponseJson();
@@ -368,9 +368,9 @@ class ChatControllerTest extends TestCase
             'POST',
             route('api.chat.new'),
             [
-                    'target_id' => $this->anotherUser->user_id,
-                    'message' => self::$faker->sentence(),
-                ]
+                'target_id' => $this->anotherUser->user_id,
+                'message' => self::$faker->sentence(),
+            ]
         )->assertStatus(200);
 
         // ensure conversation with $this->anotherUser is visible again
@@ -437,9 +437,9 @@ class ChatControllerTest extends TestCase
             'POST',
             route('api.chat.new'),
             [
-                    'target_id' => $this->anotherUser->user_id,
-                    'message' => self::$faker->sentence(),
-                ]
+                'target_id' => $this->anotherUser->user_id,
+                'message' => self::$faker->sentence(),
+            ]
         )->assertStatus(200);
 
         $presenceData = $response->decodeResponseJson();
