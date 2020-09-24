@@ -50,6 +50,7 @@
   },
   "require-dev": {
     "beyondcode/laravel-query-detector": "*",
+    "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
     "filp/whoops": "*",
     "fzaninotto/faker": "*",
     "laravel/dusk": "*",
