@@ -112,8 +112,10 @@ class NotifyForumUpdateSlack implements ShouldQueue
         $suffix = '';
         if ($this->isFromSupport()) {
             $suffix = ' (Support Team)';
-        } elseif ($this->post->post_id !== $this->topic->topic_first_post_id &&
-            $this->topic->topic_poster === $this->user->user_id) {
+        } elseif (
+            $this->post->post_id !== $this->topic->topic_first_post_id &&
+            $this->topic->topic_poster === $this->user->user_id
+        ) {
             $suffix = ' (OP)';
         }
 
