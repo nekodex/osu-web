@@ -245,7 +245,7 @@ abstract class Search extends HasSearch implements Queryable
     private function getDatadogTags()
     {
         return [
-            'type' => $this->loggingTag ?? get_class_basename(get_called_class()),
+            'type' => $this->loggingTag ?? get_class_basename(static::class),
             'index' => $this->index,
         ];
     }
